@@ -5,6 +5,7 @@
 githubOwner := "jondlew"
 githubRepository := "play-s3"
 githubTokenSource := TokenSource.GitConfig("github.token")
+publishMavenStyle := true
 
 lazy val root = (project in file("."))
   .settings(
