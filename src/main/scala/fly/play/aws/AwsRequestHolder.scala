@@ -2,8 +2,8 @@ package fly.play.aws
 
 import java.io.File
 
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
+import org.apache.pekko.stream.scaladsl.Source
+import org.apache.pekko.util.ByteString
 import play.api.libs.ws.{WSRequest, _}
 import play.api.mvc.MultipartFormData
 
@@ -148,6 +148,8 @@ case class AwsRequestHolder(wrappedRequest: WSRequest, signer: AwsSigner, implic
   def withUrl(url: String): AwsRequestHolder =
     copy(wrappedRequest = wrappedRequest withUrl url)
 
+  override def withDisableUrlEncoding(disableUrlEncoding: Boolean): WSRequest = ???
+
   private def streamingBodyNotSupported =
     sys error
       """|A streaming body in the request is currently not supported. We could
@@ -158,6 +160,10 @@ case class AwsRequestHolder(wrappedRequest: WSRequest, signer: AwsSigner, implic
          |it is not the way to go: it would negate the effect of streaming.
          |Instead of silently filling the memory with these bytes we throw the
          |error you are reading. As a bonus the interface of this library is
-         |simpeler (it is not dependent on an `ActorSystem` for signing requests).
+         |simpler (it is not dependent on an `ActorSystem` for signing requests).
          |""".stripMargin
+
+
+
+
 }

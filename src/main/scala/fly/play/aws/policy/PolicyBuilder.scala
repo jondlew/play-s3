@@ -56,7 +56,7 @@ trait StringCondition extends Condition {
   lazy val escapedValue = escape(value)
 
   def escape(value: String): String =
-    value.replaceAllLiterally("$", """\$""")
+    value.replace("$", """\$""")
 }
 
 object Condition {

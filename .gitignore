@@ -14,3 +14,4 @@ src/test/conf
 .target
 /bin
 /.idea
+.DS_Store

@@ -31,6 +31,7 @@ package object acl {
       xml.attribute(xml.getNamespace("xsi"), "type") match {
         case Some(Seq(Text("CanonicalUser"))) => CanonicalUser(xml)
         case Some(Seq(Text("Group"))) => Group(xml)
+        case _ => CanonicalUser(xml)
       }
   }
 
